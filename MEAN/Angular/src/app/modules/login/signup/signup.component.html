@@ -1,0 +1,98 @@
+<div class="container" >
+    <h1>Signup</h1>
+</div>
+<div class="container" >
+        <div class="row">
+         <div class="col-12">
+               <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                      <div class="col-6">
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">First Name</label>
+                              <input formControlName="first_Name" type="text" class="form-control" 
+                                placeholder="Enter name"
+                               [ngClass]="{ 'is-invalid': submitted && f.first_Name.errors }"   type="text" class="form-control">
+                               <div *ngIf="submitted && f.first_Name.errors" class="invalid-feedback">
+                                  <div *ngIf="f.first_Name.errors.required">Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                 <label for="exampleInputEmail1">Email</label>
+                                 <input formControlName="email" 
+                                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }"   type="text" class="form-control"
+                                   placeholder="Enter email">
+                                   <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                      <div *ngIf="f.email.errors.required">Email is required</div>
+                                      <div *ngIf="f.email.errors.pattern">Enter valid email id</div>
+                                    </div>
+                               </div>
+
+                               <div class="form-group">
+                                  <label for="inputState">Role</label>
+                                  <select id="inputState" 
+                                  [ngClass]="{ 'is-invalid': submitted && f.designation.errors }" 
+                                   formControlName="designation" 
+                                  class="form-control">
+                                  <option value="">role</option>
+                                    <option value="{{item._id}}" *ngFor="let item of designation">{{item.designation}}</option>
+                                  </select>
+                                  <div *ngIf="submitted && f.designation.errors" class="invalid-feedback">
+                                      <div *ngIf="f.designation.errors.required">designation is required</div>
+                                    </div>
+                                </div>
+                      </div>
+
+                      <div class="col-6">
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">Mobile</label>
+                              <input formControlName="mobile" type="text" class="form-control" 
+                              [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"
+                               placeholder="Enter mobile">
+                               <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                                  <div *ngIf="f.mobile.errors.required">mobile no is required</div>
+                                  <div *ngIf="f.mobile.errors.pattern">Enter correct mobile no</div>
+                                
+                                </div>
+                            </div>
+                           <div class="form-group">
+                             <label for="exampleInputPassword1">Password</label>
+                             <input type="password" formControlName="password" 
+                             [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                             class="form-control" 
+                              placeholder="Password">
+                              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                  <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                           </div>    
+                       <div class="form-group">
+                          <label for="exampleInputPassword1">Confirm Password</label>
+                          <input type="password" 
+                          [ngClass]="{ 'is-invalid': submitted && f.confirm.errors }"
+                           formControlName="confirm" class="form-control" 
+                           placeholder="Re enter password">
+                          <div *ngIf="submitted && f.confirm.errors" class="invalid-feedback">
+                              <div *ngIf="f.confirm.errors.required">Enter confirm password</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>  
+                      
+                     
+                       <div class="row">
+                          <div class="col-1">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                            <div class="col-1">
+                               <button type="submit" (click)="onCancel()" class="btn btn-primary">Reset</button>
+                            </div>
+                       </div>
+                       </form>
+             </div>
+        </div>         
+    </div>
+    
+
+
+
+
+    

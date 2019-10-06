@@ -1,0 +1,157 @@
+<div class="container" >
+    <h1>User Information</h1>
+</div>
+<div class="container" >
+    <div class="row">
+     <div class="col-12">
+           <form [formGroup]="userForm" (ngSubmit)="onSubmit(userObj._id)">  
+              <div class="row">
+                  <div class="col-6">
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">Name</label>
+                          <input formControlName="name"
+                           [ngClass]="{ 'is-invalid': submitted && f.name.errors }" 
+                           [(ngModel)]="userObj.name" type="text" class="form-control"   placeholder="Enter name">
+                          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                           <div *ngIf="f.name.errors.required">Name is required</div>
+                         </div>
+                       </div>
+
+                       <div class="form-group">
+                          <label for="exampleInputEmail1">Mobile</label>
+                          <input formControlName="mobile_no" [ngClass]="{ 'is-invalid': submitted && f.mobile_no.errors }"
+                           [(ngModel)]="userObj.mobile_no" type="text" class="form-control" id="exampleInputEmail1" 
+                           aria-describedby="emailHelp" placeholder="Enter mobile no">
+                          <div *ngIf="submitted && f.mobile_no.errors" class="invalid-feedback">
+                            <div *ngIf="f.mobile_no.errors.required">mobile no is required</div>
+                            <div *ngIf="f.mobile_no.errors.pattern">Enter correct mobile no</div>
+                          
+                          </div>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Date</label>
+                            <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" formControlName="date" [ngClass]="{ 'is-invalid': submitted && f.date.errors }"
+                             [(ngModel)]="userObj.date" class="form-control"
+                             id="exampleInputPassword1" placeholder="Enter date">
+                             <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                            <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                              <div *ngIf="f.date.errors.required">Date is required</div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label for="exampleInputPassword1">Time</label>
+                              <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" formControlName="time" [ngClass]="{ 'is-invalid': submitted && f.time.errors }"
+                               [(ngModel)]="userObj.time" class="form-control"
+                               id="exampleInputPassword1" placeholder="Enter time">
+                               <owl-date-time [pickerType]="'timer'" #dt1></owl-date-time>
+                              <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
+                                <div *ngIf="f.time.errors.required">Time is required</div>
+                              </div>
+                            </div>
+
+                         
+                  </div>
+                  <div class="col-6">
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">Email</label>
+                          <input formControlName="email" 
+                          [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
+                          [(ngModel)]="userObj.email" type="text" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp" placeholder="Enter email">
+                          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.pattern">Enter valid email id</div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputState">Gender</label>
+                            <select id="inputState" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }"
+                             [(ngModel)]="userObj.gender"
+                             formControlName="gender" class="form-control">
+                              <option >--select--</option>
+                              <option value="male">Male</option>
+                              <option value="female">Female</option>
+                            </select>
+                            <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                              <div *ngIf="f.gender.errors.required">Gender is required</div>
+                            </div>
+                          </div> 
+                          
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Url</label>
+                            <input type="text" formControlName="url" [ngClass]="{ 'is-invalid': submitted && f.url.errors }"
+                             [(ngModel)]="userObj.url" class="form-control" id="exampleInputPassword1"
+                              placeholder="Enter url">
+                            <div *ngIf="submitted && f.url.errors" class="invalid-feedback">
+                             <div *ngIf="f.url.errors.required">Url is required</div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Description</label>
+                            <textarea formControlName="description"  [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+                             [(ngModel)]="userObj.description" placeholder="Enter description" class="form-control col-xs-12" rows="3" cols="10">
+                            </textarea>
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                              <div *ngIf="f.description.errors.required">Description is required</div>
+                            </div>
+                        </div>      
+                  </div>
+                </div> 
+                <div class="row">
+                    <div class="col-1">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                      <div class="col-1">
+                         <button type="submit" (click)="onCancel()" class="btn btn-primary">Reset</button>
+                      </div>
+                 </div>
+           </form>
+         </div>
+    </div>         
+</div>
+
+
+
+<div class="container">
+    <h2 class="mt-4">User Details</h2>   
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Email</th>
+          <th>Url</th>
+          <th>Description</th>
+          <th>Gender</th>
+          <th>Mobile_no</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userDetails">
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.url}}</td>
+          <td>{{user.description}}</td>
+          <td>{{user.gender}}</td>
+          <td>{{user.mobile_no}}</td>
+          <td>{{user.date}}</td>
+          <td>{{user.time}}</td>
+          <td> <button type="button" id={{user._id}} (click)="getById($event)" class="btn btn-primary">Edit</button></td>
+          <td><button type="button" (click)="delete(user)"  class="btn btn-danger">Delete</button></td>  
+        </tr>
+      </tbody>
+    </table>
+    <h3 *ngIf="noUserDetails == '0'">No records available</h3> 
+  </div>
+
+
+
+
+
